@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require('./config/config.json');
 const jsonfile = require('jsonfile');
 const getJSON = require('get-json');
-let announced_races = jsonfile.readFileSync("./announced_races.json");
+let announced_races = jsonfile.readFileSync("./config/announced_races.json");
 const client = new Discord.Client();
 jsonfile.spaces = 4;
 
@@ -58,7 +58,7 @@ setInterval(NewRaceCheck, 5000);
 
 function WriteRacesToFile() {
 	console.log('writing json for backup');
-	jsonfile.writeFile("./announced_races.json", announced_races);
+	jsonfile.writeFile("./config/announced_races.json", announced_races);
 }
 
 setInterval(WriteRacesToFile, 60000);
