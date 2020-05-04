@@ -43,14 +43,12 @@ function NewRaceCheck() {
 		const parsed = (JSON.parse(stringified));
 		console.log('checking races');
 		console.log('announced races: ' + announced_races);
-		const test_bot_channel = client.channels.cache.get('703050360498946458');
-		const gta_race_channel = client.channels.cache.get('298906757416353792');
+		const race_channel = client.channels.cache.get('298906757416353792');
 		parsed.races.forEach(element => {
 			const race_name = (JSON.stringify(element.name));
 			if (race_name.includes('gta') && !announced_races.includes(race_name)) {
 				announced_races.push(race_name);
-				test_bot_channel.send('A new race is happening! Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Link: https://racetime.gg' + element.url);
-				gta_race_channel.send('A new race is happening! Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Link: https://racetime.gg' + element.url);
+				race_channel.send('A new race is happening! Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Link: https://racetime.gg' + element.url);
 			}
 		});
 	});
