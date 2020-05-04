@@ -26,7 +26,7 @@ client.on('message', message => {
 			const parsed = (JSON.parse(stringified));
 
 			parsed.races.forEach(element => {
-				if (JSON.stringify(element.name).includes('gta')) {
+				if (JSON.stringify(element.name).includes(config.filter)) {
 					message.channel.send('Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Players: ' + element.entrants_count + ' (https://racetime.gg' + element.url + ')');
 				}
 			});
@@ -43,10 +43,10 @@ function NewRaceCheck() {
 		const parsed = (JSON.parse(stringified));
 		console.log('checking races');
 		console.log('announced races: ' + announced_races);
-		const race_channel = client.channels.cache.get('298906757416353792');
+		const race_channel = client.channels.cache.get(config.channel_id);
 		parsed.races.forEach(element => {
 			const race_name = (JSON.stringify(element.name));
-			if (race_name.includes('gta') && !announced_races.includes(race_name)) {
+			if (race_name.includes(config.filter) && !announced_races.includes(race_name)) {
 				announced_races.push(race_name);
 				race_channel.send('A new race is happening! Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Link: https://racetime.gg' + element.url);
 			}

@@ -1,4 +1,6 @@
 {
 	"prefix": "!",
-	"token": ""
+	"token": "",
+	"channel_id": "",
+	"filter": ""
 }
