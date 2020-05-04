@@ -3,7 +3,7 @@ A simple Discord bot for racetime.gg written in JavaScript
 
 # Install
 
-> npm install
+> npm install  
 > node index.js
 
 # Note
