@@ -1,7 +1,7 @@
 {
-  "name": "discord-twitch-bot",
+  "name": "racetimegg-discord-bot",
   "version": "1.0.0",
-  "description": "hoxi's Discord Twitch Bot",
+  "description": "Simple Racetime.gg Twitch Bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
