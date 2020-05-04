@@ -10,3 +10,5 @@ Additionally, you need to add your bot account token into config/config.json. Th
 
 # Note
 The bot has a hardcoded filter for GTA games. To change that edit line 30 and 51 in index.js to include the url of your desired game/game series, or just empty it to remove the filter.
+
+You also need to switch the channel ids on line 46. It currently points to the #racing channel on the GTA Speedrunning Discord.
