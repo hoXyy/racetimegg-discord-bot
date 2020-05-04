@@ -24,10 +24,15 @@ client.on('message', message => {
 			}
 			const stringified = (JSON.stringify(response));
 			const parsed = (JSON.parse(stringified));
+			let noraces = true;
 
 			parsed.races.forEach(element => {
 				if (JSON.stringify(element.name).includes(config.filter)) {
 					message.channel.send('Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Players: ' + element.entrants_count + ' (https://racetime.gg' + element.url + ')');
+					noraces = false;
+				}
+				else if (noraces) {
+					message.channel.send('No races found.');
 				}
 			});
 		});
