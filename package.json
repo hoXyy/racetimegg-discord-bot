@@ -1,0 +1,17 @@
+{
+  "name": "discord-twitch-bot",
+  "version": "1.0.0",
+  "description": "hoxi's Discord Twitch Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hoxi",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "get-json": "^1.0.1",
+    "jsonfile": "^6.0.1",
+    "rus-diff": "^1.1.0"
+  }
+}
