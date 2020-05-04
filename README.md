@@ -3,7 +3,7 @@ A simple Discord bot for racetime.gg written in JavaScript
 
 # Install
 
-> git clone https://github.com/hoXyy/racetimegg-discord-bot.git
+> git clone https://github.com/hoXyy/racetimegg-discord-bot.git  
 > npm install  
 > node index.js
 
