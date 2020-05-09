@@ -27,7 +27,7 @@ client.on('message', message => {
 			let noraces = true;
 
 			parsed.races.forEach(element => {
-				if (JSON.stringify(element.name).includes(config.filter)) {
+				if (JSON.stringify(element.category.slug).includes(config.filter)) {
 					message.channel.send('Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Players: ' + element.entrants_count + ' (https://racetime.gg' + element.url + ')');
 					noraces = false;
 				}
