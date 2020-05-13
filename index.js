@@ -25,18 +25,31 @@ client.on('message', message => {
 			const stringified = (JSON.stringify(response));
 			const parsed = (JSON.parse(stringified));
 			let noraces = true;
-
-			parsed.races.forEach(element => {
-				if (JSON.stringify(element.category.slug).includes(config.filter)) {
-					message.channel.send('Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Players: ' + element.entrants_count + ' (https://racetime.gg' + element.url + ')');
-					noraces = false;
-				}
-				else if (noraces) {
-					message.channel.send('No races found.');
-				}
-			});
+			const raceListEmbed = new Discord.MessageEmbed()
+				.setColor('#0394fc')
+				.setTitle('Current active races')
+				.setTimestamp();
+			if (parsed.races && parsed.races.length) {
+				parsed.races.forEach(element => {
+					if (JSON.stringify(element.category.slug).includes(config.filter)) {
+						raceListEmbed.addFields(
+							{ name: 'Game', value: element.category.name, inline: true },
+							{ name: 'Category', value: element.goal.name, inline: true },
+							{ name: 'Link', value: `https://racetime.gg${element.url}`, inline: true },
+						);
+						noraces = false;
+					}
+					else if (noraces) {
+						raceListEmbed.setDescription('No races are currently active.')
+					};
+				});
+			}
+			else {
+				raceListEmbed.setDescription('No races are currently active.')
+			}
+			message.channel.send(raceListEmbed);
 		});
-	}
+	};
 });
 
 function NewRaceCheck() {
@@ -46,14 +59,22 @@ function NewRaceCheck() {
 		}
 		const stringified = (JSON.stringify(response));
 		const parsed = (JSON.parse(stringified));
-		console.log('checking races');
-		console.log('announced races: ' + announced_races);
 		const race_channel = client.channels.cache.get(config.channel_id);
 		parsed.races.forEach(element => {
 			const race_name = (JSON.stringify(element.category.slug));
-			if (race_name.includes(config.filter) && !announced_races.includes(element.anem)) {
+			if (race_name.includes(config.filter) && !announced_races.includes(element.name)) {
 				announced_races.push(element.name);
-				race_channel.send('A new race is happening! Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Link: https://racetime.gg' + element.url);
+				const raceEmbed = new Discord.MessageEmbed()
+					.setColor('#0394fc')
+					.setTitle('A new race is happening!')
+					.setURL(`https://racetime.gg${element.url}`)
+					.setThumbnail(`https://racetime.gg${element.category.image}`)
+					.addFields(
+						{ name: 'Game', value: element.category.name },
+						{ name: 'Category', value: element.goal.name },
+					)
+					.setTimestamp();
+				race_channel.send(raceEmbed);
 			}
 		});
 	});
@@ -62,7 +83,6 @@ function NewRaceCheck() {
 setInterval(NewRaceCheck, 5000);
 
 function WriteRacesToFile() {
-	console.log('writing json for backup');
 	jsonfile.writeFile("./config/announced_races.json", announced_races);
 }
 
