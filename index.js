@@ -51,7 +51,7 @@ function NewRaceCheck() {
 		const race_channel = client.channels.cache.get(config.channel_id);
 		parsed.races.forEach(element => {
 			const race_name = (JSON.stringify(element.category.slug));
-			if (race_name.includes(config.filter) && !announced_races.includes(race_name)) {
+			if (race_name.includes(config.filter) && !announced_races.includes(element.anem)) {
 				announced_races.push(element.name);
 				race_channel.send('A new race is happening! Game: ' + element.category.name + ' - Category: ' + element.goal.name + ' - Link: https://racetime.gg' + element.url);
 			}
