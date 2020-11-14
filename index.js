@@ -67,7 +67,7 @@ function NewRaceCheck() {
 				const raceEmbed = new Discord.MessageEmbed()
 					.setColor('#0394fc')
 					.setTitle('A new race is happening!')
-					.setURL(`https://racetime.gg${element.url}`)
+					.setURL(element.url)
 					.setThumbnail(`https://racetime.gg${element.category.image}`)
 					.addFields(
 						{ name: 'Game', value: element.category.name },
