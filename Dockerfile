@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16-alpine3.18
 
 WORKDIR /racetimegg-discord-bot
 
